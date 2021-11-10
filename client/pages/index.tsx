@@ -15,7 +15,7 @@ export default function Home() {
             <div className="flex w-screen h-screen items-center justify-center">
                 <div className="w-1/2">
                     <H1 center={true} withMargin={true}>
-                        Welcome to the Laravel Next.js Starter Kit
+                       Soma, doing his best to make the world a better place.
                     </H1>
 
                     <p className="text-center mb-4 mt-12">

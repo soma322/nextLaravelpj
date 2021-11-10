@@ -23,8 +23,8 @@ export function Navbar(): ReactElement {
 
     const sidebarOffset: string = `${
         showSidebar
-            ? "right-0"
-            : "-right-full md:-right-1/2 lg:-right-1/3 xl:-right-1/4"
+            ? "left-0"
+            : "-left-full md:-left-1/2 lg:-left-1/3 xl:-left-1/4"
     }`;
 
     // Return statement.
@@ -33,7 +33,7 @@ export function Navbar(): ReactElement {
             {/* The Menu Bar that the horizontal bar at the top of the screen that is shown on all breakpoints. It includes the logo als well as the Burger Menu */}
             <MenuBar onClick={toggleNavbar} />
             <div
-                className={`h-screen w-full md:w-1/2 lg:w-1/3 xl:w-1/4 fixed top-0 right-0 transition-all bg-purple-50 ${sidebarOffset} flex flex-col items-center justiy-start z-50 shadow-lg pt-8 pb-16 px-10`}
+                className={`h-screen w-full md:w-1/2 lg:w-1/3 xl:w-1/4 fixed top-0 left-0 transition-all bg-purple-50 ${sidebarOffset} flex flex-col items-center justiy-start z-50 shadow-lg pt-8 pb-16 px-10`}
             >
                 <div
                     className="flex justify-end w-full pb-8 cursor-pointer"
@@ -161,9 +161,7 @@ NavbarMenuLink.propTypes = {
 export function MenuBar({ onClick }): ReactElement {
     return (
         <nav className="w-screen py-3 px-2 flex sticky top-0 items-center justify-between bg-purple-50 z-40">
-            <Link href="/">
-                <a>Blog</a>
-            </Link>
+           
             <div className="h-full cursor-pointer" onClick={onClick}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
