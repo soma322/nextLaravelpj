@@ -11,31 +11,41 @@ import Link from "next/link";
 import {useEffect,ReactElement, useState} from "react";
 import PropTypes from "prop-types";
 import {NextRouter, useRouter} from "next/router";
+import { connect } from "react-redux";
+import { login } from "@/store/auth/authActions";
 
 
 /**
  * The default nabvar.
  */
-export function Navbar(props: any): ReactElement {
+const check = (props: any): ReactElement => {
+
+ return ( 
+    props.isAuthenticated
+
+ );
+};
+
+
+export function Navbar(): ReactElement {
     const [showSidebar, toggleSidebar] = useState<boolean>(false);
     const router: NextRouter = useRouter();
     const toggleNavbar = (): void => {
         toggleSidebar(!showSidebar);
     };
-    /*
-    useEffect(() => {
-        if (!props.isAuthenticated) {
-            router.push("/user/login");
-        }
-    }, [props.isAuthenticated]);
-    */
+    
+    
+    
+    
     const sidebarOffset: string = `${
         showSidebar
             ? "left-0"
             : "-left-full md:-left-1/2 lg:-left-1/3 xl:-left-1/4"
     }`;
 
-    if(props.isAuthenticated){
+    const x = check(props);
+console.log(x);
+    if(x){
         return (
             <>
                 {/* The Menu Bar that the horizontal bar at the top of the screen that is shown on all breakpoints. It includes the logo als well as the Burger Menu */}
@@ -129,6 +139,11 @@ export function Navbar(props: any): ReactElement {
                         link="/contact"
                         onClick={toggleNavbar}
                     />
+                     <NavbarMenuLink
+                        title="Log in"
+                        link="/user/login"
+                        onClick={toggleNavbar}
+                    />
                      
                 </div>
             </>
@@ -200,10 +215,7 @@ export function MegaMenu(): ReactElement {
     );
 }
 
-/**
- * A Link that can be displayed in the menu.
- * @param {object} props
- */
+
 export function NavbarMenuLink({ title, link, onClick }): ReactElement {
     return (
         <Link href={link}>
@@ -249,3 +261,21 @@ export function MenuBar({ onClick }): ReactElement {
 MenuBar.propTypes = {
     onClick: PropTypes.func.isRequired
 };
+
+// Map redux states to local component props.
+const mapStateToProps = (state: any) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    loginError: state.auth.loginError,
+    loading: state.auth.loginLoading,
+});
+// Define PropTypes.
+check.propTypes = {
+    props: PropTypes.object,
+    login: PropTypes.func,
+};
+
+export default connect(mapStateToProps, { login })(check);
+function props(props: any) {
+    throw new Error("Function not implemented.");
+}
+
