@@ -25,7 +25,14 @@ const check = (props: any): ReactElement => {
 
  );
 };
-
+/*
+export function loginSuccess(userData) {
+    return {
+        type: types.LOG_IN_SUCCESS,
+        payload: userData
+        }
+    }
+*/
 
 export function Navbar(): ReactElement {
     const [showSidebar, toggleSidebar] = useState<boolean>(false);
