@@ -18,40 +18,26 @@ import { login } from "@/store/auth/authActions";
 /**
  * The default nabvar.
  */
-const check = (props: any): ReactElement => {
 
- return ( 
-    props.isAuthenticated
 
- );
-};
-/*
-export function loginSuccess(userData) {
-    return {
-        type: types.LOG_IN_SUCCESS,
-        payload: userData
-        }
-    }
-*/
 
 export function Navbar(): ReactElement {
     const [showSidebar, toggleSidebar] = useState<boolean>(false);
-    const router: NextRouter = useRouter();
+
     const toggleNavbar = (): void => {
         toggleSidebar(!showSidebar);
     };
     
     
-    
-    
+
     const sidebarOffset: string = `${
         showSidebar
             ? "left-0"
             : "-left-full md:-left-1/2 lg:-left-1/3 xl:-left-1/4"
     }`;
 
-    const x = check(props);
-console.log(x);
+const x = true;
+
     if(x){
         return (
             <>
@@ -276,13 +262,10 @@ const mapStateToProps = (state: any) => ({
     loading: state.auth.loginLoading,
 });
 // Define PropTypes.
-check.propTypes = {
+Navbar.propTypes = {
     props: PropTypes.object,
     login: PropTypes.func,
 };
 
-export default connect(mapStateToProps, { login })(check);
-function props(props: any) {
-    throw new Error("Function not implemented.");
-}
+export default connect(mapStateToProps, { login })(Navbar);
 
